@@ -34,7 +34,7 @@ Installation
 ------------
 
 Avconv is needed to convert some of your files due to Google's MP3 constraint
-also, this program needs `watchdog`, `requests` and `bs4` Python libraries to work.
+also, this program needs `watchdog`, `ytmusicapi`, `requests` and `bs4` Python libraries to work.
 
 .. code::
 
@@ -190,7 +190,6 @@ Requirements
 ------------
 
 Google Music Uploader works with Python 3 or above.
-It requires `Sigma67's Youtube Music API <https://github.com/sigma67/ytmusicapi>`_ and `Watchdog <https://pypi.python.org/pypi/watchdog>`_.
 
 Submitting bugs and feature requests
 ------------------------------------
