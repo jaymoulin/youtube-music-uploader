@@ -21,7 +21,7 @@ publish-docker:
 	mv manifest2.yaml manifest.yaml
 	manifest-tool push from-spec manifest.yaml
 latest: build-docker
-	FULLVERSION=latest VERSION=${VERSION} make publish
+	FULLVERSION=latest VERSION=${VERSION} make publish-docker
 test: install
 	twine upload -r testpypi dist/*
 publish: install

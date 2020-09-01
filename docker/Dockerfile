@@ -20,8 +20,8 @@ RUN apk update && \
     pip3 install youtube-music-uploader && \
     apk del gcc --purge .build-deps
 
-COPY ./daemon.sh /root/daemon
-COPY ./auth.sh /root/auth
+COPY ./docker/daemon.sh /root/daemon
+COPY ./docker/auth.sh /root/auth
 
 VOLUME /media/library
 VOLUME /root/oauth
