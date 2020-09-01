@@ -8,6 +8,7 @@ import os
 import glob
 import argparse
 import requests
+from .__init__ import __version__
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -177,7 +178,16 @@ def main():
         default=None,
         help="Deduplicate API (should be HTTP and compatible with the manifest (see README)) (default: None)"
     )
+    parser.add_argument(
+        "--version",
+        '-v',
+        action='store_true',
+        help="show version number and exit"
+    )
     args = parser.parse_args()
+    if args.version:
+        print(__version__)
+        return
     upload(
         directory=args.directory,
         oauth=args.oauth,

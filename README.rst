@@ -62,11 +62,12 @@ First, launch the daemon to watch a directory new inputs.
 
 .. code::
 
-    usage: youtube-music-upload [-h] [--directory DIRECTORY] [--oauth OAUTH] [-r]
+    usage: youtube-music-upload [-h] [-v] [--directory DIRECTORY] [--oauth OAUTH] [-r]
                               [-o] [--deduplicate_api DEDUPLICATE_API]
 
     optional arguments:
       -h, --help            show this help message and exit
+      -v, --version         show version number and exit
       --directory DIRECTORY, -d DIRECTORY
                             Music Folder to upload from (default: .)
       --oauth OAUTH, -a OAUTH
