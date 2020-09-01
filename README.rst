@@ -33,52 +33,23 @@ This work is based upon `Sigma67's Youtube Music API <https://github.com/sigma67
 Installation
 ------------
 
-Avconv is needed to convert some of your files due to Google's MP3 constraint
-also, this program needs `watchdog`, `ytmusicapi`, `requests` and `bs4` Python libraries to work.
+This program needs `watchdog`, `ytmusicapi` and `requests` Python libraries to work.
 
 .. code::
 
-    apt-get install python3-pip libav-tools build-essential
+    apt-get install python3-pip build-essential
     pip3 install youtube-music-uploader
 
-
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-##############################
-
-Once installed, You have to authenticate to Google Music via the `google-music-auth` command
+Once installed, You have to authenticate to Youtube Music via the `youtube-music-auth` command
 
 .. code::
 
-    # Usage google-music-auth [path_to_oauth_cred_file=~/oauth]
+    # Usage youtube-music-auth [path_to_oauth_cred_file=~/oauth]
 
 
 If first parameter is not defined, the script will try to store/load your oauth credentials through the `~/oauth` file.
 
-Then follow prompted instructions.
-
-You will be asked to go to a Google URL to allow the connection:
-
-.. code::
-
-    Visit the following url:
-        https://accounts.google.com/o/oauth2/v2/auth?client_id=XXXXXXXXXXX.apps.googleusercontent.com&access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fmusicmanager&response_type=code&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob
-    Follow the prompts, then paste the auth code here and hit enter:
+Then follow the setup instructions provided https://ytmusicapi.readthedocs.io/en/latest/setup.html#copy-authentication-headers.
 
 Usage
 -----
@@ -86,15 +57,13 @@ Usage
 Uploader
 ~~~~~~~~
 
-This program will scan a given directory for new elements to upload them to Google Music.
+This program will scan a given directory for new elements to upload them to Youtube Music.
 First, launch the daemon to watch a directory new inputs.
-
-It will *NOT* upload already existing files, *ONLY* new files while the daemon is running. (Please contribute if you want this to change)
 
 .. code::
 
     usage: youtube-music-upload [-h] [--directory DIRECTORY] [--oauth OAUTH] [-r]
-                              [--uploader_id UPLOADER_ID] [-o] [--deduplicate_api DEDUPLICATE_API]
+                              [-o] [--deduplicate_api DEDUPLICATE_API]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -103,9 +72,6 @@ It will *NOT* upload already existing files, *ONLY* new files while the daemon i
       --oauth OAUTH, -a OAUTH
                             Path to oauth file (default: ~/oauth)
       -r, --remove          Remove the file on your hard drive if it was already successfully uploaded (default: False)
-      --uploader_id UPLOADER_ID, -u UPLOADER_ID
-                            Uploader identification (should be an uppercase MAC
-                            address) (default: <current eth0 MAC address>)
       -o, --oneshot         Upload folder and exit (default: False)
       -w DEDUPLICATE_API, --deduplicate_api DEDUPLICATE_API
                             Deduplicate API (should be HTTP and compatible with
@@ -118,7 +84,7 @@ This program will send all files or the specified file to the deduplication API
 
 .. code::
 
-    usage: google-music-upload-deduplicate [-h] --deduplicate_api DEDUPLICATE_API
+    usage: youtube-music-upload-deduplicate [-h] --deduplicate_api DEDUPLICATE_API
                                        [--directory DIRECTORY] [--file FILE]
                                        [--remove]
 
@@ -142,7 +108,7 @@ Preface
 
 This API is completely optional. You don't have to implement this. It will only help you to avoid useless Google calls
 
-You can use your own API implementation to avoid sampling + Google upload.
+You can use your own API implementation to avoid multiple Youtube Music uploads.
 This API should match with the following requirements.
 
 You may want to use this existing one : `Google MusicManager Deduplicate API <https://github.com/jaymoulin/google-musicmanager-dedup-api>`_.
@@ -189,7 +155,7 @@ About
 Requirements
 ------------
 
-Google Music Uploader works with Python 3 or above.
+Youtube Music Uploader works with Python 3 or above.
 
 Submitting bugs and feature requests
 ------------------------------------
