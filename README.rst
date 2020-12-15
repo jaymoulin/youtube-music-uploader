@@ -24,6 +24,8 @@ Youtube Music Uploader
     :alt: Become a Patron
     :target: https://patreon.com/jaymoulin
 
+DISCLAIMER: As-of 2021, this product does not have a free support team anymore. If you want this product to be maintained, please support on Patreon.
+
 (This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added.)
 
 This program will create a Daemonic folder to upload your music library to Youtube Music
