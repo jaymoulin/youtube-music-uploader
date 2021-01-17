@@ -107,6 +107,7 @@ def upload(
     oauth: str = os.environ['HOME'] + '/oauth',
     remove: bool = False,
     oneshot: bool = False,
+    listerner_only: bool = False,
     deduplicate_api: str = None,
 ) -> None:
     handler = logging.StreamHandler()
@@ -133,9 +134,10 @@ def upload(
         observer = Observer()
         observer.schedule(event_handler, directory, recursive=True)
         observer.start()
-    files = [file for file in glob.glob(glob.escape(directory) + '/**/*', recursive=True)]
-    for file_path in files:
-        upload_file(api, file_path, logger, remove=remove, deduplicate_api=deduplicate)
+    if not listerner_only:
+        files = [file for file in glob.glob(glob.escape(directory) + '/**/*', recursive=True)]
+        for file_path in files:
+            upload_file(api, file_path, logger, remove=remove, deduplicate_api=deduplicate)
     if oneshot:
         sys.exit(0)
     try:
@@ -173,6 +175,12 @@ def main():
         help="Upload folder and exit (default: False)"
     )
     parser.add_argument(
+        "--listener_only",
+        '-l',
+        action='store_true',
+        help="Only listen for new files, does not parse all files at launch (default: False)"
+    )
+    parser.add_argument(
         "--deduplicate_api",
         '-w',
         default=None,
@@ -193,6 +201,7 @@ def main():
         oauth=args.oauth,
         remove=args.remove,
         oneshot=args.oneshot,
+        listerner_only=args.listener_only,
         deduplicate_api=args.deduplicate_api,
     )
 

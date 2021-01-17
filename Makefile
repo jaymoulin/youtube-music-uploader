@@ -1,6 +1,6 @@
 .PHONY: all test publish install clean check build-docker publish-docker latest
 
-VERSION ?= 1.0.0
+VERSION ?= 1.1.0
 CACHE ?= --no-cache=1
 FULLVERSION ?= 1.6.3
 archs ?= amd64 i386 arm64v8 arm32v6

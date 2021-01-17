@@ -4,14 +4,15 @@ COPY qemu-*-static /usr/bin/
 
 FROM builder
 
-ARG VERSION=1.0.0
+ARG VERSION=1.1.0
 
-LABEL maintainer="Jay MOULIN <jay@femtopixel.com> <https://twitter.com/MoulinJay>"
+LABEL maintainer="Jay MOULIN <https://jaymoulin.me/me/youtube-music-uploader/> <https://twitter.com/MoulinJay>"
 LABEL version=${VERSION}
 
 ENV REMOVE=0
 ENV ONESHOT=0
-ENV DEDUP_API=
+ENV LISTENER_ONLY=0
+ENV DEDUP_API=''
 
 RUN apk update && \
     apk add gcc g++ linux-headers libxml2-dev libxslt-dev --no-cache --virtual .build-deps && \

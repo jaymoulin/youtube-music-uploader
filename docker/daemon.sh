@@ -16,6 +16,9 @@ else
     if [[ "$ONESHOT" == "1" ]] || [[ "$ONESHOT" == "True" ]] || [[ "$ONESHOT" == "true" ]] || [[ "$ONESHOT" == "TRUE" ]]; then
         PARAMS="$PARAMS -o"
     fi
+    if [[ "$LISTENER_ONLY" == "1" ]] || [[ "$LISTENER_ONLY" == "True" ]] || [[ "$LISTENER_ONLY" == "true" ]] || [[ "$LISTENER_ONLY" == "TRUE" ]]; then
+        PARAMS="$PARAMS -l"
+    fi
     if [[ "$DEDUP_API" ]]; then
         PARAMS="$PARAMS -w $DEDUP_API"
     fi
