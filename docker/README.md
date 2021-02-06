@@ -6,7 +6,7 @@ Youtube Music Uploader - Docker Image
 [![Docker Pulls](https://img.shields.io/docker/pulls/jaymoulin/youtube-music-uploader.svg)](https://hub.docker.com/r/jaymoulin/youtube-music-uploader/)
 [![Docker stars](https://img.shields.io/docker/stars/jaymoulin/youtube-music-uploader.svg)](https://hub.docker.com/r/jaymoulin/youtube-music-uploader/)
 [![PayPal donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ppl.png "PayPal donation")](https://www.paypal.me/jaymoulin)
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy me a coffee")](https://www.buymeacoffee.com/3Yu8ajd7W)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy me a coffee")](https://www.buymeacoffee.com/jaymoulin)
 [![Become a Patron](https://badgen.net/badge/become/a%20patron/F96854 "Become a Patron")](https://patreon.com/jaymoulin)
 
 (This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added.)
