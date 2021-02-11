@@ -15,7 +15,7 @@ build-docker: qemu-arm-static qemu-aarch64-static
 		docker build -t jaymoulin/youtube-music-uploader:${VERSION}-$(arch) -f .Dockerfile --build-arg VERSION=${VERSION} ${CACHE} .;\
 	)
 publish-docker:
-	docker push jaymoulin/youtube-music-uploader
+	docker push jaymoulin/youtube-music-uploader -a
 	cat docker/manifest.yml | sed "s/\$$VERSION/${VERSION}/g" > manifest.yaml
 	cat manifest.yaml | sed "s/\$$FULLVERSION/${FULLVERSION}/g" > manifest2.yaml
 	mv manifest2.yaml manifest.yaml
