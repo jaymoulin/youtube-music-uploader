@@ -12,6 +12,7 @@ from .__init__ import __version__
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from watchdog.utils.dirsnapshot import DirectorySnapshot, DirectorySnapshotDiff
 from ytmusicapi import YTMusic
 
 
@@ -32,9 +33,12 @@ class DeduplicateApi:
 
 class MusicToUpload(FileSystemEventHandler):
     def on_created(self, event) -> None:
+        global last_snapshot
         self.logger.info("Detected new files!")
         if os.path.isdir(self.path):
-            files = [file for file in glob.glob(glob.escape(self.path) + '/**/*', recursive=True)]
+            curr_snapshot = DirectorySnapshot(self.path)
+            files = [file for file in DirectorySnapshotDiff(last_snapshot, curr_snapshot).files_created]
+            last_snapshot = curr_snapshot
             for file_path in files:
                 upload_file(
                     api=self.api,
@@ -110,6 +114,8 @@ def upload(
     listerner_only: bool = False,
     deduplicate_api: str = None,
 ) -> None:
+    global last_snapshot
+
     handler = logging.StreamHandler()
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
@@ -124,6 +130,8 @@ def upload(
     observer = None
     deduplicate = DeduplicateApi(deduplicate_api) if deduplicate_api else None
     if not oneshot:
+        if os.path.isdir(directory):
+            last_snapshot = DirectorySnapshot(directory)
         event_handler = MusicToUpload()
         event_handler.api = api
         event_handler.oauth = oauth
