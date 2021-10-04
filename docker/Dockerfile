@@ -4,7 +4,7 @@ COPY qemu-*-static /usr/bin/
 
 FROM builder
 
-ARG VERSION=1.1.0
+ARG VERSION=1.2.0
 
 LABEL maintainer="Jay MOULIN <https://jaymoulin.me/me/youtube-music-uploader/> <https://twitter.com/MoulinJay>"
 LABEL version=${VERSION}
