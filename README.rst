@@ -112,6 +112,8 @@ Preface
 
 This API is completely optional. You don't have to implement this. It will only help you to avoid useless Google calls
 
+Thanks to Brian Doherty, a local snapshot is now made to avoid external deduplication calls on local updated files.
+
 You can use your own API implementation to avoid multiple Youtube Music uploads.
 This API should match with the following requirements.
 

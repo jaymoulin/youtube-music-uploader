@@ -111,7 +111,7 @@ def upload(
     oauth: str = os.environ['HOME'] + '/oauth',
     remove: bool = False,
     oneshot: bool = False,
-    listerner_only: bool = False,
+    listener_only: bool = False,
     deduplicate_api: str = None,
 ) -> None:
     global last_snapshot
@@ -142,7 +142,7 @@ def upload(
         observer = Observer()
         observer.schedule(event_handler, directory, recursive=True)
         observer.start()
-    if not listerner_only:
+    if not listener_only:
         files = [file for file in glob.glob(glob.escape(directory) + '/**/*', recursive=True)]
         for file_path in files:
             upload_file(api, file_path, logger, remove=remove, deduplicate_api=deduplicate)
@@ -209,7 +209,7 @@ def main():
         oauth=args.oauth,
         remove=args.remove,
         oneshot=args.oneshot,
-        listerner_only=args.listener_only,
+        listener_only=args.listener_only,
         deduplicate_api=args.deduplicate_api,
     )
 
