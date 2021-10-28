@@ -85,9 +85,10 @@ def upload_file(
                     if exists:
                         return
                 logger.info("Uploading %s" % file_path)
-                uploaded = 'STATUS_SUCCEEDED' in api.upload_song(file_path)
+                status = api.upload_song(file_path)
+                uploaded = 'STATUS_SUCCEEDED' in status
                 if uploaded is False:
-                    logger.info("Not uploaded %s" % file_path)
+                    logger.info("Not uploaded %s: %s" % (file_path, status))
                 if uploaded and deduplicate_api:
                     logger.info("Deduplicate API: saving %s" % file_path)
                     deduplicate_api.save(file_path)
@@ -97,6 +98,7 @@ def upload_file(
             retry = 0
         except Exception as e:
             error_message = str(e)
+            logger.info("Exception: Not uploaded %s: %s" % (file_path, error_message))
             if "401" in error_message or "Supported file types are" in error_message:
                 retry -= 1
             elif "502" in error_message:
