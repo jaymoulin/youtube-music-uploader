@@ -89,6 +89,13 @@ def upload_file(
                 uploaded = 'STATUS_SUCCEEDED' in status
                 if uploaded is False:
                     logger.info("Not uploaded %s: %s" % (file_path, status))
+                    if (status.status_code == 503): # Service unavailable; retry
+                        retry -= 1
+                        time.sleep(30)
+                        continue
+                    elif (status.status_code == 409) and deduplicate_api: # Already uploaded; deduplicate
+                        logger.info("Deduplicate API: saving %s" % file_path)
+                        deduplicate_api.save(file_path)
                 if uploaded and deduplicate_api:
                     logger.info("Deduplicate API: saving %s" % file_path)
                     deduplicate_api.save(file_path)
@@ -99,9 +106,14 @@ def upload_file(
         except Exception as e:
             error_message = str(e)
             logger.info("Exception: Not uploaded %s: %s" % (file_path, error_message))
-            if "401" in error_message or "Supported file types are" in error_message:
+            if error_message.find("Supported file types are") != -1:
+                retry = 0
+                if deduplicate_api: # Save unsupported files so that we don't attempt upload again
+                    logger.info("Deduplicate API: saving %s" % file_path)
+                    deduplicate_api.save(file_path)
+            elif error_message.find("401") != -1:
                 retry -= 1
-            elif "502" in error_message:
+            elif error_message.find("502") != -1:
                 retry -= 1
                 time.sleep(30)
             else:
