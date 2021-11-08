@@ -4,6 +4,7 @@
 import sys
 import time
 import logging
+import logging.handlers
 import os
 import glob
 import argparse
@@ -127,10 +128,14 @@ def upload(
     oneshot: bool = False,
     listener_only: bool = False,
     deduplicate_api: str = None,
+    log: str = None,
 ) -> None:
     global last_snapshot
 
-    handler = logging.StreamHandler()
+    if log:
+        handler = logging.handlers.WatchedFileHandler(log)
+    else:
+        handler = logging.StreamHandler()
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger = logging.getLogger(__name__)
@@ -209,6 +214,11 @@ def main():
         help="Deduplicate API (should be HTTP and compatible with the manifest (see README)) (default: None)"
     )
     parser.add_argument(
+        "--log",
+        default=None,
+        help="log to file instead of stderr"
+    )
+    parser.add_argument(
         "--version",
         '-v',
         action='store_true',
@@ -225,6 +235,7 @@ def main():
         oneshot=args.oneshot,
         listener_only=args.listener_only,
         deduplicate_api=args.deduplicate_api,
+        log=args.log,
     )
 
 
