@@ -90,7 +90,7 @@ def upload_file(
                 uploaded = 'STATUS_SUCCEEDED' in status
                 if uploaded is False:
                     logger.info("Not uploaded %s: %s" % (file_path, status))
-                    if (status.status_code == 503): # Service unavailable; retry
+                    if ((status.status_code == 503) or (status.status_code == 408)): # Service unavailable or timeout; retry
                         retry -= 1
                         time.sleep(30)
                         continue
