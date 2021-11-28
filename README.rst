@@ -77,6 +77,8 @@ First, launch the daemon to watch a directory new inputs.
       -r, --remove          Remove the file on your hard drive if it was already successfully uploaded (default: False)
       -o, --oneshot         Upload folder and exit (default: False)
       -l, --listener_only   Only listen for new files, does not parse all files at launch (default: False)
+      -e ERROR_FILE_PATH, --log ERROR_FILE_PATH
+                            Log to a specified file path (Default stderr)
       -w DEDUPLICATE_API, --deduplicate_api DEDUPLICATE_API
                             Deduplicate API (should be HTTP and compatible with
                             the manifest (see README)) (default: None)
