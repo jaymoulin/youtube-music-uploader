@@ -13,6 +13,7 @@ ENV REMOVE=0
 ENV ONESHOT=0
 ENV LISTENER_ONLY=0
 ENV DEDUP_API=''
+ENV ERROR_FILE=''
 
 RUN apk update && \
     apk add gcc g++ linux-headers libxml2-dev libxslt-dev --no-cache --virtual .build-deps && \
