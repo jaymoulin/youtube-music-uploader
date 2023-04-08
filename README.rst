@@ -20,9 +20,9 @@ Youtube Music Uploader
 .. image:: https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png
     :alt: Buy me a coffee
     :target: https://www.buymeacoffee.com/jaymoulin
-.. image:: https://badgen.net/badge/become/a%20patron/F96854
-    :alt: Become a Patron
-    :target: https://patreon.com/jaymoulin
+.. image:: https://ko-fi.com/img/githubbutton_sm.svg
+    :alt: Buy me a cofee
+    :target: https://ko-fi.com/jaymoulin
 
 DISCLAIMER: As-of 2021, this product does not have a free support team anymore. If you want this product to be maintained, please support on Patreon.
 
@@ -77,6 +77,8 @@ First, launch the daemon to watch a directory new inputs.
       -r, --remove          Remove the file on your hard drive if it was already successfully uploaded (default: False)
       -o, --oneshot         Upload folder and exit (default: False)
       -l, --listener_only   Only listen for new files, does not parse all files at launch (default: False)
+      -e ERROR_FILE_PATH, --log ERROR_FILE_PATH
+                            Log to a specified file path (Default stderr)
       -w DEDUPLICATE_API, --deduplicate_api DEDUPLICATE_API
                             Deduplicate API (should be HTTP and compatible with
                             the manifest (see README)) (default: None)
@@ -171,7 +173,7 @@ Bugs and feature request are tracked on GitHub
 Author
 ------
 
-Jay MOULIN jay@femtopixel.com See also the list of contributors which participated in this program.
+Jay MOULIN See also the list of contributors which participated in this program.
 
 License
 -------

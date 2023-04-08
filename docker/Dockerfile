@@ -1,10 +1,10 @@
-FROM python:alpine3.12 as builder
+FROM python:alpine as builder
 
 COPY qemu-*-static /usr/bin/
 
 FROM builder
 
-ARG VERSION=1.2.0
+ARG VERSION=1.3.0
 
 LABEL maintainer="Jay MOULIN <https://jaymoulin.me/me/youtube-music-uploader/> <https://twitter.com/MoulinJay>"
 LABEL version=${VERSION}
@@ -13,6 +13,7 @@ ENV REMOVE=0
 ENV ONESHOT=0
 ENV LISTENER_ONLY=0
 ENV DEDUP_API=''
+ENV ERROR_FILE=''
 
 RUN apk update && \
     apk add gcc g++ linux-headers libxml2-dev libxslt-dev --no-cache --virtual .build-deps && \

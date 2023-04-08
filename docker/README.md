@@ -7,7 +7,7 @@ Youtube Music Uploader - Docker Image
 [![Docker stars](https://img.shields.io/docker/stars/jaymoulin/youtube-music-uploader.svg)](https://hub.docker.com/r/jaymoulin/youtube-music-uploader/)
 [![PayPal donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ppl.png "PayPal donation")](https://www.paypal.me/jaymoulin)
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy me a coffee")](https://www.buymeacoffee.com/jaymoulin)
-[![Become a Patron](https://badgen.net/badge/become/a%20patron/F96854 "Become a Patron")](https://patreon.com/jaymoulin)
+[![Buy me a coffee](https://ko-fi.com/img/githubbutton_sm.svg "Buy me a coffee")](https://www.ko-fi.com/jaymoulin)
 
 (This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added.)
 
@@ -33,9 +33,8 @@ These environments variable will produce a different behaviour
 * `REMOVE` Remove file on a successful upload (boolean, (default: false)) - pass to true if you want to remove files 
 * `ONESHOT` Execute only once without listening to folder events (boolean, (default: false)) - pass to true if you want to execute only once (also remove `--restart=always` from docker parameters) 
 * `LISTENER_ONLY` Listener only, upload files only when added not at start (boolean, (default: false)) - pass to true if you want to listen
-* `DEDUP_API` Url to the deduplicate API (string (default: None)) - Will call deduplicate API before trying to sample and upload to Google Music
-* `LOGIN` Login (for cover art uploading) (string (default: None)) - Login of your Google Music account for cover art uploading
-* `PASSWORD` Password (for cover art uploading) (string (default: None)) - Password of your Google Music account for cover art uploading
+* `DEDUP_API` Url to the deduplicate API (string (default: None)) - Will call deduplicate API before trying to sample and upload to Youtube Music
+* `ERROR_FILE` Path to logs (string (default: None)) - Will logs into the specified file - default stderr
 
 ### Example
 ```

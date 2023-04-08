@@ -22,6 +22,9 @@ else
     if [[ "$DEDUP_API" ]]; then
         PARAMS="$PARAMS -w $DEDUP_API"
     fi
+    if [[ "$ERROR_FILE" ]]; then
+        PARAMS="$PARAMS -e $ERROR_FILE"
+    fi
     youtube-music-upload -d /media/library -a /root/oauth/oauth.key $PARAMS &
     PID=$!
     wait $PID

@@ -132,10 +132,7 @@ def upload(
 ) -> None:
     global last_snapshot
 
-    if log:
-        handler = logging.handlers.WatchedFileHandler(log)
-    else:
-        handler = logging.StreamHandler()
+    handler = logging.handlers.WatchedFileHandler(log) if log else logging.StreamHandler()
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger = logging.getLogger(__name__)
@@ -215,8 +212,9 @@ def main():
     )
     parser.add_argument(
         "--log",
+        '-e',
         default=None,
-        help="log to file instead of stderr"
+        help="Log to a specified file path (Default stderr)"
     )
     parser.add_argument(
         "--version",
