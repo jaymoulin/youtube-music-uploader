@@ -5,11 +5,10 @@
 
 import sys
 import os
-from ytmusicapi import YTMusic
-
+from ytmusicapi.setup import setup
 
 def auth(auth_file: str = os.environ['HOME'] + '/oauth') -> None:
-    if YTMusic.setup(auth_file):
+    if setup(auth_file):
         print("Logged successfully")
 
 
