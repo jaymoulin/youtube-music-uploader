@@ -1,13 +1,10 @@
-FROM python:alpine as builder
-
-COPY qemu-*-static /usr/bin/
-
-FROM builder
+FROM python:alpine
 
 ARG VERSION=1.3.1
+ARG TARGETPLATFORM
 
-LABEL maintainer="Jay MOULIN <https://jaymoulin.me/me/youtube-music-uploader/> <https://twitter.com/MoulinJay>"
-LABEL version=${VERSION}
+LABEL maintainer="Jay MOULIN <https://jaymoulin.me/me/youtube-music-uploader/>"
+LABEL version=${VERSION}-${TARGETPLATFORM}
 
 ENV REMOVE=0
 ENV ONESHOT=0

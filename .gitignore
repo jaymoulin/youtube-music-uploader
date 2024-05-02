@@ -2,6 +2,3 @@
 /dist
 /youtube_music_uploader.egg-info
 /youtube_music_uploader/__pycache__
-.Dockerfile
-*.yaml
-qemu-*-static

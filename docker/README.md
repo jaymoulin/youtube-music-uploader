@@ -1,3 +1,9 @@
+> [!CAUTION]
+> As-of 2021, this product does not have a free support team anymore. If you want this product to be maintained, please support my work.
+
+> [!NOTE]
+> (This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many  desirable features yet to be added.)
+
 ![logo](../logo.png)
 
 Youtube Music Uploader - Docker Image
@@ -8,8 +14,6 @@ Youtube Music Uploader - Docker Image
 [![PayPal donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ppl.png "PayPal donation")](https://www.paypal.me/jaymoulin)
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy me a coffee")](https://www.buymeacoffee.com/jaymoulin)
 [![Buy me a coffee](https://ko-fi.com/img/githubbutton_sm.svg "Buy me a coffee")](https://www.ko-fi.com/jaymoulin)
-
-(This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added.)
 
 This image allows you to watch a folder and upload all new MP3 added to your Youtube Music Library.
 
