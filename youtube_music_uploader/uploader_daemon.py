@@ -117,6 +117,9 @@ def upload_file(
             elif error_message.find("502") != -1:
                 retry -= 1
                 time.sleep(30)
+            elif error_message.find("x-goog-upload-url") != -1:
+                retry = 0
+                logger.info("File was too large to upload. Skipping for now.")
             else:
                 raise e
 
