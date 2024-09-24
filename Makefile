@@ -1,6 +1,6 @@
 .PHONY: all test publish install clean check build-docker publish-docker
 
-VERSION ?= 1.2.0
+VERSION ?= 1.3.2
 CACHE ?= --no-cache=1
 
 all: build-docker publish-docker
