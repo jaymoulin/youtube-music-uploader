@@ -25,7 +25,13 @@ docker run -d --restart=always -v /path/to/your/library:/media/library --name yo
 ```
 
 You must define your path to your library in a volume to `/media/library`
-You can also mount another volume to `/root/oauth` folder to retrieve your oauth key 
+You can also mount another volume to `/root/oauth` folder to persist your browser auth file
+
+> [!NOTE]
+> Despite the `oauth` naming, uploads require **browser (cookie) authentication**.
+> OAuth is intentionally not supported: YouTube Music's upload endpoint has no
+> public/OAuth API, and `ytmusicapi` only accepts browser auth for uploads. Google
+> Cloud OAuth credentials will not work here.
 
 See environment variables to tweak some behaviour
 
@@ -64,7 +70,7 @@ First, you have to allow the container to access your Google Music account
 ```
 docker exec -ti youtubemusic auth
 ```
-Then follow the setup instructions provided https://ytmusicapi.readthedocs.io/en/latest/setup.html#copy-authentication-headers.
+Then follow the setup instructions provided https://ytmusicapi.readthedocs.io/en/latest/setup/browser.html (paste the request headers from a logged-in browser session).
 
 Once done, restart the container to start watching your folder and uploading your MP3.
 ```

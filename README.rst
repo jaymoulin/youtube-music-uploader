@@ -46,12 +46,21 @@ Once installed, You have to authenticate to Youtube Music via the `youtube-music
 
 .. code::
 
-    # Usage youtube-music-auth [path_to_oauth_cred_file=~/oauth]
+    # Usage youtube-music-auth [path_to_auth_file=~/oauth]
 
 
-If first parameter is not defined, the script will try to store/load your oauth credentials through the `~/oauth` file.
+If first parameter is not defined, the script will try to store/load your credentials through the `~/oauth` file.
 
-Then follow the setup instructions provided https://ytmusicapi.readthedocs.io/en/latest/setup.html#copy-authentication-headers.
+Then follow the setup instructions provided https://ytmusicapi.readthedocs.io/en/latest/setup/browser.html
+
+.. note::
+
+    **OAuth is intentionally not supported for uploads.** YouTube Music's upload
+    endpoint is a private, web-client-only API with no public/OAuth equivalent,
+    and ``ytmusicapi`` rejects anything other than browser (cookie) authentication
+    for ``upload_song``. The auth file (historically named ``oauth``) must therefore
+    be a *browser* auth file produced by ``youtube-music-auth``. Google Cloud OAuth
+    credentials will not work for uploading your library.
 
 Usage
 -----
@@ -64,7 +73,7 @@ First, launch the daemon to watch a directory new inputs.
 
 .. code::
 
-    usage: youtube-music-upload [-h] [-v] [--directory DIRECTORY] [--oauth OAUTH] [-r]
+    usage: youtube-music-upload [-h] [-v] [--directory DIRECTORY] [--auth-file AUTH_FILE] [-r]
                               [-o] [--deduplicate_api DEDUPLICATE_API]
 
     optional arguments:
@@ -72,8 +81,9 @@ First, launch the daemon to watch a directory new inputs.
       -v, --version         show version number and exit
       --directory DIRECTORY, -d DIRECTORY
                             Music Folder to upload from (default: .)
-      --oauth OAUTH, -a OAUTH
-                            Path to oauth file (default: ~/oauth)
+      --auth-file AUTH_FILE, --oauth AUTH_FILE, -a AUTH_FILE
+                            Path to the browser auth file created by youtube-music-auth
+                            (default: ~/oauth). --oauth is a deprecated alias.
       -r, --remove          Remove the file on your hard drive if it was already successfully uploaded (default: False)
       -o, --oneshot         Upload folder and exit (default: False)
       -l, --listener_only   Only listen for new files, does not parse all files at launch (default: False)

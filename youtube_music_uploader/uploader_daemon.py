@@ -15,6 +15,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from watchdog.utils.dirsnapshot import DirectorySnapshot, DirectorySnapshotDiff
 from ytmusicapi import YTMusic
+from ytmusicapi.auth.types import AuthType
 
 
 class DeduplicateApi:
@@ -126,7 +127,7 @@ def upload_file(
 
 def upload(
     directory: str = '.',
-    oauth: str = os.environ['HOME'] + '/oauth',
+    auth_file: str = os.environ['HOME'] + '/oauth',
     remove: bool = False,
     oneshot: bool = False,
     listener_only: bool = False,
@@ -143,9 +144,16 @@ def upload(
     logger.addHandler(handler)
     logger.info("Init Daemon - Press Ctrl+C to quit")
 
-    api = YTMusic(oauth)
+    api = YTMusic(auth_file)
     if not api:
         raise ValueError("Error with credentials")
+    if api.auth_type != AuthType.BROWSER:
+        raise ValueError(
+            "Uploads to YouTube Music require browser (cookie) authentication, but the "
+            "auth file '%s' is not a browser auth file. OAuth is not supported for uploads "
+            "(YouTube Music has no public/OAuth upload API). Run `youtube-music-auth` to "
+            "create a browser auth file." % auth_file
+        )
     observer = None
     deduplicate = DeduplicateApi(deduplicate_api) if deduplicate_api else None
     if not oneshot:
@@ -153,7 +161,7 @@ def upload(
             last_snapshot = DirectorySnapshot(directory)
         event_handler = MusicToUpload()
         event_handler.api = api
-        event_handler.oauth = oauth
+        event_handler.auth_file = auth_file
         event_handler.path = directory
         event_handler.remove = remove
         event_handler.logger = logger
@@ -184,10 +192,13 @@ def main():
         help="Music Folder to upload from (default: .)"
     )
     parser.add_argument(
-        "--oauth",
+        "--auth-file",
+        "--oauth",  # deprecated alias, kept for backwards compatibility
         '-a',
+        dest="auth_file",
         default=os.environ['HOME'] + '/oauth',
-        help="Path to oauth file (default: ~/oauth)"
+        help="Path to the browser auth file created by youtube-music-auth "
+             "(default: ~/oauth). Note: uploads require browser auth; OAuth is not supported."
     )
     parser.add_argument(
         "-r",
@@ -231,7 +242,7 @@ def main():
         return
     upload(
         directory=args.directory,
-        oauth=args.oauth,
+        auth_file=args.auth_file,
         remove=args.remove,
         oneshot=args.oneshot,
         listener_only=args.listener_only,
